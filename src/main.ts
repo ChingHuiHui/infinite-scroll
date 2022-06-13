@@ -1,7 +1,7 @@
 import './index.scss'
 
 const gallery = document.querySelector<HTMLDivElement>('#gallery')!
-const bottomDiv = document.querySelector('.bottom') as HTMLDivElement
+const target = document.querySelector('.loading') as HTMLDivElement
 
 const IMAGE_URL: string = `https://picsum.photos/400/300?random=`
 
@@ -11,23 +11,12 @@ const getImage = (): string => {
   return IMAGE_URL + randomNumber
 }
 
-let imageData: string[]
-
-const init = () => {
-  imageData = Array.from({ length: 5 }, () => getImage())
-
-  gallery.innerHTML = `${imageData
-    .map((image) => `<img class="image" src="${image}" />`)
-    .join('')}
-`
-}
-
 const buildImageElement = () => {
   const img = document.createElement('img')
   img.className = 'image'
   img.src = getImage()
 
-  return img
+  return `<img src="${getImage()}" class="image">`
 }
 
 function getCurrentImageSize(): number {
@@ -36,7 +25,7 @@ function getCurrentImageSize(): number {
 
 const options = {
   rootMargin: '10px 0px 0px 0px', // top right bottom left
-  threshold: 0.8, // 只想在可見度達一個比例時觸發
+  threshold: 1, // 只想在可見度達一個比例時觸發
 }
 
 const callback = (
@@ -49,17 +38,16 @@ const callback = (
 
     // load the new image
     for (let i = 0; i < 5; i++) {
-      gallery.appendChild(buildImageElement())
+      gallery.innerHTML += buildImageElement()
     }
 
     // stop to observe
     if (getCurrentImageSize() >= 100) {
       observer.unobserve(entry.target)
+      target.remove()
     }
   })
 }
 
-init()
-
 let observer = new IntersectionObserver(callback, options)
-observer.observe(bottomDiv)
+observer.observe(target)
