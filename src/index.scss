@@ -11,31 +11,10 @@ main {
   margin: 0 auto;
 }
 
-#gallery {
-  margin-bottom: 3rem;
-  background: gray;
-}
-
 img {
   width: 100%;
 }
 
-.loading {
-  margin: 0 auto;
-  margin-top: 1.5rem;
-  border: 5px solid #f3f3f3;
-  border-top: 5px solid #60a917;
-  border-radius: 50%;
-  width: 1.5rem;
-  height: 1.5rem;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+ul {
+  list-style: none;
 }
