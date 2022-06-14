@@ -10,19 +10,10 @@ main {
   margin: 0 auto;
 }
 
-#gallery {
-  margin-bottom: 3rem;
-}
-
 img {
   width: 100%;
 }
 
-.bottom {
-  background-color: bisque;
-  height: 6rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2rem;
+ul {
+  list-style: none;
 }
